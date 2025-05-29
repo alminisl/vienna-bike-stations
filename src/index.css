@@ -12,9 +12,23 @@
 }
 
 .marker-icon.air-pump {
-  filter: brightness(0) saturate(100%) invert(46%) sepia(65%) saturate(2383%) hue-rotate(191deg) brightness(101%) contrast(101%);
+  filter: brightness(0) saturate(100%) invert(46%) sepia(65%) saturate(2383%)
+    hue-rotate(191deg) brightness(101%) contrast(101%);
 }
 
 .marker-icon.tool-station {
-  filter: brightness(0) saturate(100%) invert(27%) sepia(91%) saturate(2576%) hue-rotate(346deg) brightness(98%) contrast(95%);
+  filter: brightness(0) saturate(100%) invert(27%) sepia(91%) saturate(2576%)
+    hue-rotate(346deg) brightness(98%) contrast(95%);
+}
+
+.leaflet-popup-content {
+  margin: 13px 13px;
+  min-width: 200px;
+}
+
+@media (max-width: 640px) {
+  .leaflet-popup-content {
+    margin: 10px 10px;
+    min-width: 180px;
+  }
 }
