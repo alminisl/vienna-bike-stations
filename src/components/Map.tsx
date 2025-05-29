@@ -26,21 +26,22 @@ const Map = ({ stations }: MapProps) => {
   };
 
   const openNavigation = (latitude: number, longitude: number) => {
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`;
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`;
+    const appleMapsUrl = `maps://maps.apple.com/?daddr=${latitude},${longitude}`;
 
-    if (isMobile) {
-      if (
-        navigator.platform.indexOf("iPhone") !== -1 ||
-        navigator.platform.indexOf("iPad") !== -1 ||
-        navigator.platform.indexOf("iPod") !== -1
-      ) {
-        window.location.href = `maps://maps.apple.com/?daddr=${latitude},${longitude}`;
-        return;
+    if (isIOS) {
+      const userChoice = window.confirm(
+        'Möchten Sie Google Maps verwenden? Klicken Sie auf "Abbrechen" für Apple Maps.'
+      );
+      if (userChoice) {
+        window.location.href = googleMapsUrl;
+      } else {
+        window.location.href = appleMapsUrl;
       }
+    } else {
+      window.open(googleMapsUrl, "_blank");
     }
-
-    window.open(mapsUrl, "_blank");
   };
 
   return (
